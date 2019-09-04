@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 final class Flowerbed {
     private FlowerBonus[] bonuses;
-    private Flowers[] flowers = new Flowers[9];
+    private Flower[] flowers = new Flower[9];
     private int colorCount;
 
     Flowerbed(FlowerBonus[] bonuses, int colorCount) {
@@ -18,11 +18,11 @@ final class Flowerbed {
         return bonuses;
     }
 
-    Flowers getFlower(int index) {
+    Flower getFlower(int index) {
         return flowers[index];
     }
 
-    void setFlower(int index, Flowers flower) {
+    void setFlower(int index, Flower flower) {
         flowers[index] = flower;
     }
 

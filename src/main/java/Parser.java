@@ -19,8 +19,8 @@ class Parser {
             var flowerBonuses = new ArrayList<FlowerBonus>();
             Stream.of(file).skip(2).forEach(line -> {
                 String[] split = line.split(" ");
-                var flowerColor1 = Flowers.parseString(split[0]);
-                var flowerColor2 = Flowers.parseString(split[1]);
+                var flowerColor1 = Flower.parseString(split[0]);
+                var flowerColor2 = Flower.parseString(split[1]);
                 var bonus = Integer.parseInt(split[2]);
                 flowerBonuses.add(new FlowerBonus(flowerColor1, flowerColor2, bonus));
             });

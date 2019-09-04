@@ -1,27 +1,27 @@
 final class FlowerBonus {
-    private Flowers flower1;
-    private Flowers flower2;
+    private Flower.Colors flower1;
+    private Flower.Colors flower2;
     private int bonus;
 
-    FlowerBonus(Flowers flower1, Flowers flower2, int bonus) {
+    FlowerBonus(Flower.Colors flower1, Flower.Colors flower2, int bonus) {
         this.flower1 = flower1;
         this.flower2 = flower2;
         this.bonus = bonus;
     }
 
-    Flowers getFlower1() {
+    Flower.Colors getFlower1() {
         return flower1;
     }
 
-    void setFlower1(Flowers flower1) {
+    void setFlower1(Flower.Colors flower1) {
         this.flower1 = flower1;
     }
 
-    Flowers getFlower2() {
+    Flower.Colors getFlower2() {
         return flower2;
     }
 
-    void setFlower2(Flowers flower2) {
+    void setFlower2(Flower.Colors flower2) {
         this.flower2 = flower2;
     }
 
