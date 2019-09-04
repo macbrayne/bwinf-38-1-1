@@ -5,13 +5,6 @@ class Flower {
         this.color = color;
     }
 
-    static Colors parseString(String parser) {
-        for (Colors color : Colors.values()) {
-            if (color.parser.equals(parser)) return color;
-        }
-        return null;
-    }
-
     enum Colors {
         BLUE("blau", 1), YELLOW("gelb", 2),
         GREEN("gruen", 3), ORANGE("orange", 4),
@@ -23,6 +16,13 @@ class Flower {
         Colors(String parser, int value) {
             this.parser = parser;
             this.value = value;
+        }
+
+        static Colors parseString(String parser) {
+            for (Colors color : values()) {
+                if (color.parser.equals(parser)) return color;
+            }
+            return null;
         }
 
         public int value() {
