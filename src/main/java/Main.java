@@ -1,8 +1,6 @@
-import java.util.Arrays;
-
 public final class Main {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(Parser.run()));
+        Flowerbed[] data = Parser.run();
         var flowerbed = new Flowerbed(
                 new FlowerBonus[]{new FlowerBonus(Flower.Colors.GREEN, Flower.Colors.BLUE, 2)},
                 3);
@@ -12,16 +10,22 @@ public final class Main {
         prettyPrint(flowerbed);
     }
 
-    public static void prettyPrint(Flowerbed result) {
-        System.out.println("Hochbeet:");
-        System.out.println(String.format("    %d    ", result.getFlower(0).color.value()));
-        System.out.println(String.format("  %d   %d  ", result.getFlower(1).color.value(),
-                result.getFlower(2).color.value()));
-        System.out.println(String.format("%d   %d   %d", result.getFlower(3).color.value(),
-                result.getFlower(4).color.value(), result.getFlower(5).color.value()));
-        System.out.println(String.format("  %d   %d  ", result.getFlower(6).color.value(),
-                result.getFlower(7).color.value()));
-        System.out.println(String.format("    %d    ", result.getFlower(8).color.value()));
-        System.out.println(String.format("Bewertung: %d", result.getScore()));
+    private static void prettyPrint(Flowerbed result) {
+        System.out.println("Hochbeet:\n" +
+                String.format("%5d      %n",
+                        result.getFlower(0).color.value()) +
+                String.format("%3d%4d   %n",
+                        result.getFlower(1).color.value(),
+                        result.getFlower(2).color.value()) +
+                String.format("%d%4d%4d %n",
+                        result.getFlower(3).color.value(),
+                        result.getFlower(4).color.value(),
+                        result.getFlower(5).color.value()) +
+                String.format("%3d%4d   %n",
+                        result.getFlower(6).color.value(),
+                        result.getFlower(7).color.value()) +
+                String.format("%5d      %n",
+                        result.getFlower(8).color.value()) +
+                String.format("Bewertung: %d", result.getScore()));
     }
 }
