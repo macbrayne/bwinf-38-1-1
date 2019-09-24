@@ -1,13 +1,14 @@
 public final class Main {
     public static void main(String[] args) {
-        Flowerbed[] data = Parser.run();
-        var flowerbed = new Flowerbed(
-                new FlowerBonus[]{new FlowerBonus(Flower.Colors.GREEN, Flower.Colors.BLUE, 2)},
-                3);
-        for (int i = 0; i < 9; i++) {
-            flowerbed.setFlower(i, new Flower(Flower.Colors.RED));
-        }
-        prettyPrint(flowerbed);
+        Flowerbed[] flowerbeds = Parser.run();
+        Flowerbed optimum = findOptimum(flowerbeds);
+        prettyPrint(optimum);
+    }
+
+
+    private static Flowerbed findOptimum(Flowerbed[] data) {
+        //TODO: Implement algorithm
+        return null;
     }
 
     private static void prettyPrint(Flowerbed result) {
