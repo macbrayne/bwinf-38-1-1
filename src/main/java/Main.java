@@ -1,18 +1,23 @@
 public final class Main {
     public static void main(String[] args) {
         Flowerbed[] flowerbeds = Parser.run();
-        Flowerbed optimum = findOptimum(flowerbeds);
-        prettyPrint(optimum);
+        findOptimum(flowerbeds);
     }
 
 
-    private static Flowerbed findOptimum(Flowerbed[] data) {
-        //TODO: Implement algorithm
-        return null;
+    private static void findOptimum(Flowerbed[] data) {
+        for (var flowerbed : data) {
+            for (var i = 0; i < flowerbed.getFlowerCount(); i++) {
+                flowerbed.setFlower(i, Flower.getRandom());
+            }
+            //TODO: Implement algorithm
+
+            prettyPrint(flowerbed);
+        }
     }
 
     private static void prettyPrint(Flowerbed result) {
-        System.out.println("Hochbeet:\n" +
+        System.out.println(String.format("Hochbeet: %d%n", result.getId()) +
                 String.format("%5d      %n",
                         result.getFlower(0).color.value()) +
                 String.format("%3d%4d   %n",

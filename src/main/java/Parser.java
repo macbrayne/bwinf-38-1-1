@@ -24,7 +24,7 @@ class Parser {
                 var bonus = Integer.parseInt(split[2]);
                 flowerBonuses.add(new FlowerBonus(flowerColor1, flowerColor2, bonus));
             });
-            result[i] = new Flowerbed(flowerBonuses.toArray(new FlowerBonus[flowerBonusesSize]), colorCount);
+            result[i] = new Flowerbed(i + 1, flowerBonuses.toArray(new FlowerBonus[flowerBonusesSize]), colorCount);
         }
         return result;
     }

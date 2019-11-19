@@ -1,11 +1,13 @@
 import java.util.Arrays;
 
 final class Flowerbed {
+    private int id;
     private FlowerBonus[] bonuses;
     private Flower[] flowers = new Flower[9];
     private int colorCount;
 
-    Flowerbed(FlowerBonus[] bonuses, int colorCount) {
+    Flowerbed(int id, FlowerBonus[] bonuses, int colorCount) {
+        this.id = id;
         if (colorCount > 7 || bonuses.length > 7) {
             throw new IllegalArgumentException(String.format("Out of Range. Expected: <7 Actual: %s",
                     colorCount > 7 ? colorCount : bonuses.length));
@@ -22,6 +24,10 @@ final class Flowerbed {
         return flowers[index];
     }
 
+    int getFlowerCount() {
+        return flowers.length;
+    }
+
     void setFlower(int index, Flower flower) {
         flowers[index] = flower;
     }
@@ -33,6 +39,10 @@ final class Flowerbed {
     int getScore() {
         //TODO: Calculate Score
         return 0;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

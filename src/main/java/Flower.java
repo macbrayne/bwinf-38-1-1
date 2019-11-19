@@ -1,8 +1,15 @@
+import java.util.Arrays;
+import java.util.Random;
+
 class Flower {
     Colors color;
 
     Flower(Colors color) {
         this.color = color;
+    }
+
+    static Flower getRandom() {
+        return new Flower(Colors.fromValue(new Random().nextInt(Colors.size()) + 1));
     }
 
     enum Colors {
@@ -23,6 +30,14 @@ class Flower {
                 if (color.parser.equals(parser)) return color;
             }
             return null;
+        }
+
+        static Colors fromValue(int value) {
+            return Arrays.stream(Colors.values()).filter(i -> i.value == value).findAny().orElseThrow(() -> new IllegalStateException(String.format("Unsupported type %s", value)));
+        }
+
+        static int size() {
+            return (int) Arrays.stream(Colors.values()).count();
         }
 
         public int value() {
