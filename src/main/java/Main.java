@@ -1,7 +1,10 @@
+import java.util.Arrays;
+
 public final class Main {
     public static void main(String[] args) {
         Flowerbed[] flowerbeds = Parser.run();
         findOptimum(flowerbeds);
+        Arrays.stream(flowerbeds).forEach(Main::prettyPrint);
     }
 
 
@@ -11,8 +14,6 @@ public final class Main {
                 flowerbed.setFlower(i, Flower.getRandom());
             }
             //TODO: Implement algorithm
-
-            prettyPrint(flowerbed);
         }
     }
 
