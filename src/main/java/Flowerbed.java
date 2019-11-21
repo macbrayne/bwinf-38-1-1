@@ -37,6 +37,10 @@ final class Flowerbed {
     }
 
     int getScore() {
+        // Flower color count check
+        if (Arrays.stream(flowers).map(i -> i.color).distinct().count() < colorCount) {
+            return -10;
+        }
         //TODO: Calculate Score
         return 0;
     }
