@@ -13,27 +13,12 @@ final class FlowerBonus {
         return flower1;
     }
 
-    void setFlower1(Flower.Colors flower1) {
-        this.flower1 = flower1;
-    }
-
     Flower.Colors getFlower2() {
         return flower2;
     }
 
-    void setFlower2(Flower.Colors flower2) {
-        this.flower2 = flower2;
-    }
-
     int getBonus() {
         return bonus;
-    }
-
-    void setBonus(int bonus) {
-        if (bonus < 1 || bonus > 3) {
-            throw new IllegalArgumentException(String.format("Out of Range. Expected: 1-3 Actual: %s", bonus));
-        }
-        this.bonus = bonus;
     }
 
     boolean checkForBonus(Flower.Colors flower1, Flower.Colors flower2) {
