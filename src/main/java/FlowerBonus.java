@@ -36,6 +36,11 @@ final class FlowerBonus {
         this.bonus = bonus;
     }
 
+    boolean checkForBonus(Flower.Colors flower1, Flower.Colors flower2) {
+        return (flower1 == this.flower1 && flower2 == this.flower2) ||
+                (flower2 == this.flower1 && flower1 == this.flower2);
+    }
+
     @Override
     public String toString() {
         return "FlowerBonus{" +
