@@ -46,19 +46,15 @@ final class Flowerbed {
         int score = 0;
         for (int i = 0; i < flowers.length; i++) {
             Flower flower = flowers[i];
-            for (int relativeIndice : getRelativeNeighbourIndices(i)) {
-                System.err.println(flowers + " " + i + " " + relativeIndice);
-                Flower neighbourFlower = flowers[i + relativeIndice];
+            for (int relativeIndex : getRelativeNeighbourIndices(i)) {
+                Flower neighbourFlower = flowers[i + relativeIndex];
                 if (Arrays.stream(bonuses).anyMatch(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color))) {
                     FlowerBonus pair = Arrays.stream(bonuses).filter(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color)).findAny().get();
                     score += pair.getBonus();
-
                 }
             }
         }
-        System.err.println(Arrays.toString(getRelativeNeighbourIndices(1)));
-        //TODO: Calculate Score
-        return score;
+        return score / 2;
     }
 
     private int[] getRelativeNeighbourIndices(int index) {
@@ -68,7 +64,7 @@ final class Flowerbed {
                 result = new int[]{1, 2};
                 break;
             case 1:
-                result = new int[]{-1, 1, 2};
+                result = new int[]{-1, 1, 2, 3};
                 break;
             case 2:
                 result = new int[]{-2, -1, 2, 3};
