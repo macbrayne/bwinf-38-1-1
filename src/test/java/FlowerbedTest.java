@@ -10,6 +10,13 @@ class FlowerbedTest {
                 new FlowerBonus(Flower.Colors.RED, Flower.Colors.TURQUOISE, 2)};
         Flowerbed input = new Flowerbed(0, bonus, 7);
         input.setFlower(0, new Flower(Flower.Colors.RED));
-        assertEquals(input.getScore(), 7);
+        input.setFlower(1, new Flower(Flower.Colors.BLUE));
+        input.setFlower(3, new Flower(Flower.Colors.YELLOW));
+        input.setFlower(4, new Flower(Flower.Colors.TURQUOISE));
+        input.setFlower(5, new Flower(Flower.Colors.ORANGE));
+        input.setFlower(6, new Flower(Flower.Colors.GREEN));
+        input.setFlower(7, new Flower(Flower.Colors.RED));
+        input.setFlower(8, new Flower(Flower.Colors.BLUE));
+        assertEquals(7, input.getScore());
     }
 }
