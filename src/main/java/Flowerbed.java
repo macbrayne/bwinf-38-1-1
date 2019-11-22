@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 final class Flowerbed {
     private final int id;
-    private FlowerBonus[] bonuses;
+    private final FlowerBonus[] bonuses;
     private final Flower[] flowers = new Flower[9];
     private int colorCount;
 
