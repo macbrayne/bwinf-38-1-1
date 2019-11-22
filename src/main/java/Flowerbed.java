@@ -1,6 +1,4 @@
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 final class Flowerbed {
     private int id;
@@ -45,7 +43,6 @@ final class Flowerbed {
         }
 
 
-        Set<FlowerResult> pairs = new HashSet<>();
         int score = 0;
         for (int i = 0; i < flowers.length; i++) {
             Flower flower = flowers[i];
@@ -53,14 +50,9 @@ final class Flowerbed {
                 Flower neighbourFlower = flowers[i + relativeIndex];
                 if (Arrays.stream(bonuses).anyMatch(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color))) {
                     FlowerBonus pair = Arrays.stream(bonuses).filter(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color)).findAny().get();
-                    pairs.add(new FlowerResult(flower, neighbourFlower, pair));
+                    score += pair.getBonus();
                 }
             }
-        }
-        System.out.println(pairs);
-
-        for (var pair : pairs) {
-            score += pair.getBonus().getBonus();
         }
         return score;
     }
