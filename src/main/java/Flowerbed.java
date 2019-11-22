@@ -19,8 +19,8 @@ final class Flowerbed {
 
     Flowerbed(Flowerbed copy) {
         this.id = copy.id;
-        this.bonuses = copy.bonuses;
-        this.flowers = copy.flowers;
+        this.bonuses = copy.bonuses.clone();
+        this.flowers = copy.flowers.clone();
         this.colorCount = copy.colorCount;
     }
 
