@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public final class Main {
+final class Main {
     public static void main(String[] args) {
         Flowerbed[] flowerbeds = Parser.run();
         findOptimum(flowerbeds);

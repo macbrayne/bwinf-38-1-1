@@ -1,9 +1,9 @@
 import java.util.Arrays;
 
 final class Flowerbed {
-    private int id;
+    private final int id;
     private FlowerBonus[] bonuses;
-    private Flower[] flowers = new Flower[9];
+    private final Flower[] flowers = new Flower[9];
     private int colorCount;
 
     Flowerbed(int id, FlowerBonus[] bonuses, int colorCount) {

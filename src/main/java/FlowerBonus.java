@@ -1,7 +1,7 @@
 final class FlowerBonus {
-    private Flower.Colors flower1;
-    private Flower.Colors flower2;
-    private int bonus;
+    private final Flower.Colors flower1;
+    private final Flower.Colors flower2;
+    private final int bonus;
 
     FlowerBonus(Flower.Colors flower1, Flower.Colors flower2, int bonus) {
         this.flower1 = flower1;
