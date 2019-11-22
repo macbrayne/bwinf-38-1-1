@@ -9,14 +9,6 @@ final class FlowerBonus {
         this.bonus = bonus;
     }
 
-    Flower.Colors getFlower1() {
-        return flower1;
-    }
-
-    Flower.Colors getFlower2() {
-        return flower2;
-    }
-
     int getBonus() {
         return bonus;
     }
