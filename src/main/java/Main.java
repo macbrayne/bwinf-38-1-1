@@ -41,6 +41,6 @@ final class Main {
                         result.getFlower(7).color.value()) +
                 String.format("%5d      %n",
                         result.getFlower(8).color.value()) +
-                String.format("Bewertung: %d", result.getScore()));
+                String.format("Bewertung: %d%n", result.getScore()));
     }
 }
