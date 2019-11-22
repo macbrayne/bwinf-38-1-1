@@ -3,27 +3,26 @@ import java.util.Arrays;
 final class Main {
     public static void main(String[] args) {
         Flowerbed[] flowerbeds = Parser.run();
-        Arrays.stream(flowerbeds).forEach((flowerbed) -> {
-            findOptimum(flowerbed);
-            Main.prettyPrint(flowerbed);
-        });
+        Arrays.stream(flowerbeds).forEach(Main::findOptimum);
     }
 
 
     private static void findOptimum(Flowerbed flowerbed) {
+        Flowerbed working = flowerbed;
         int i = 0;
         int bestScore = 0;
         while (i < 10000) {
-            Flowerbed copy = new Flowerbed(flowerbed);
-            for (var j = 0; j < copy.getFlowerCount(); j++) {
+            Flowerbed copy = new Flowerbed(working);
+            for (int j = 0; j < copy.getFlowerCount(); j++) {
                 copy.setFlower(j, Flower.getRandom());
             }
             if (copy.getScore() > bestScore) {
                 bestScore = copy.getScore();
-                flowerbed = copy;
+                working = new Flowerbed(copy);
             }
             i++;
         }
+        prettyPrint(working);
     }
 
     private static void prettyPrint(Flowerbed result) {
