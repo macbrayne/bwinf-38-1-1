@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 final class Flowerbed {
     private int id;
@@ -43,6 +45,7 @@ final class Flowerbed {
         }
 
 
+        Set<FlowerResult> pairs = new HashSet<>();
         int score = 0;
         for (int i = 0; i < flowers.length; i++) {
             Flower flower = flowers[i];
@@ -50,16 +53,21 @@ final class Flowerbed {
                 Flower neighbourFlower = flowers[i + relativeIndex];
                 if (Arrays.stream(bonuses).anyMatch(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color))) {
                     FlowerBonus pair = Arrays.stream(bonuses).filter(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color)).findAny().get();
-                    score += pair.getBonus();
+                    pairs.add(new FlowerResult(flower, neighbourFlower, pair));
                 }
             }
         }
-        return score / 2;
+        System.out.println(pairs);
+
+        for (var pair : pairs) {
+            score += pair.getBonus().getBonus();
+        }
+        return score;
     }
 
     private int[] getRelativeNeighbourIndices(int index) {
         int[] result = null;
-        switch (getTransformedIndex(index)) {
+        switch (index) {
             case 0:
                 result = new int[]{1, 2};
                 break;
@@ -74,17 +82,22 @@ final class Flowerbed {
                 break;
             case 4:
                 result = new int[]{-3, -2, -1, 1, 2, 3};
+                break;
+            case 5:
+                result = new int[]{-3, -1, 2};
+                break;
+            case 6:
+                result = new int[]{-3, -2, 1, 2};
+                break;
+            case 7:
+                result = new int[]{-3, -2, -1, 1};
+                break;
+            case 8:
+                result = new int[]{-2, -1};
+                break;
         }
 
-        if (index > 4) {
-            assert result != null;
-            result = Arrays.stream(result).map(operand -> -operand).toArray();
-        }
         return result;
-    }
-
-    private int getTransformedIndex(int index) {
-        return index > 4 ? (flowers.length - 1) - index : index;
     }
 
     public int getId() {
