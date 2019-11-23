@@ -65,6 +65,27 @@ final class Flowerbed {
         return score;
     }
 
+    int getAnnealingScore() {
+        // Flower color count check
+        if (Arrays.stream(flowers).map(i -> i.color).distinct().count() < colorCount) {
+            return 12;
+        }
+
+
+        int score = 0;
+        for (int i = 0; i < flowers.length; i++) {
+            Flower flower = flowers[i];
+            for (int relativeIndex : getRelativeNeighbourIndices(i)) {
+                Flower neighbourFlower = flowers[i + relativeIndex];
+                if (Arrays.stream(bonuses).anyMatch(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color))) {
+                    FlowerBonus pair = Arrays.stream(bonuses).filter(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color)).findAny().get();
+                    score += -1.5 * pair.getBonus();
+                }
+            }
+        }
+        return score;
+    }
+
     private int[] getRelativeNeighbourIndices(int index) {
         int[] result = null;
         switch (index) {
