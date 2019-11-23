@@ -1,12 +1,23 @@
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ *
+ */
 final class Main {
+    /**
+     *
+     */
     public static void main(String[] args) {
         Flowerbed[] flowerbeds = Parser.run();
         Arrays.stream(flowerbeds).forEach(Main::findOptimum);
     }
 
+    /**
+     * Sets all flowers in a flowerbed to a random color.
+     *
+     * @param flowerbed Flowerbed to be initialised
+     */
     private static void init(Flowerbed flowerbed) {
         for (int i = 0; i < flowerbed.getFlowerCount(); i++) {
             flowerbed.setFlower(i, Flower.getRandom());
@@ -14,30 +25,41 @@ final class Main {
     }
 
 
+    /**
+     * @param flowerbed Finds and prints the optimum flower constellation
+     */
     private static void findOptimum(Flowerbed flowerbed) {
+        // For tracking the duration of the algorithm run
         long start = System.nanoTime();
+        // Randomize flowerbed
         init(flowerbed);
+        // Set the Annealing start temperature
         double temperature = flowerbed.getAnnealingScore() - 20;
         Random rng = new Random();
-        Flowerbed working = flowerbed;
-        Flowerbed best = new Flowerbed(flowerbed);
+
+        Flowerbed current = flowerbed; // The current flowerbed
+        Flowerbed best = new Flowerbed(flowerbed); // The best flowerbed
         for (int i = 0; i < 2000000; i++) {
-            Flowerbed copy = new Flowerbed(working);
-            working.setFlower(rng.nextInt(working.getFlowerCount()), Flower.getRandom());
-            int costDifference = copy.getAnnealingScore() - working.getAnnealingScore();
+            Flowerbed copy = new Flowerbed(current); // Copy the current flowerbed
+            current.setFlower(rng.nextInt(current.getFlowerCount()), Flower.getRandom()); // Change a random flower's color
+            int costDifference = copy.getAnnealingScore() - current.getAnnealingScore(); // Calculate the cost difference
             if (calculateAcceptanceProbability(costDifference, temperature) > rng.nextDouble()) {
-                working = new Flowerbed(copy);
+                current = new Flowerbed(copy); // Set the current flowerbed to a copy of the modified
             }
-            if (working.getAnnealingScore() < best.getAnnealingScore()) {
-                best = new Flowerbed(working);
+            if (current.getAnnealingScore() < best.getAnnealingScore()) {
+                best = new Flowerbed(current); // Sets the best flowerbed to a copy of the modified
             }
-            temperature *= 0.9999; //0.99999
+            temperature *= 0.9999; // Decrease the temperature
         }
+        // After finishing stop the timer
         long finish = System.nanoTime();
-        System.out.println((finish - start) / 1000000);
+        // and print the duration
+        System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
+        // Print the flowerbed
         prettyPrint(best);
     }
 
+    // TODO: JAVADOC
     private static double calculateAcceptanceProbability(int costDifference, double temperature) {
         if (costDifference < 0) {
             return 1.0;
@@ -45,6 +67,10 @@ final class Main {
         return Math.exp(costDifference / temperature);
     }
 
+    /**
+     * Prints a graphical representation of the flowerbed
+     * @param result The flowerbed to print
+     */
     private static void prettyPrint(Flowerbed result) {
         System.out.println(String.format("Hochbeet: %d%n", result.getId()) +
                 String.format("%5d      %n",
