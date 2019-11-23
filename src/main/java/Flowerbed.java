@@ -68,12 +68,16 @@ final class Flowerbed {
 
 
         int score = 0;
+        // Loop through flowers
         for (int i = 0; i < flowers.length; i++) {
             Flower flower = flowers[i];
+            // Loop through neighbours
             for (int relativeIndex : getRelativeNeighbourIndices(i)) {
                 Flower neighbourFlower = flowers[i + relativeIndex];
+                // Check for bonus
                 if (Arrays.stream(bonuses).anyMatch(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color))) {
                     FlowerBonus pair = Arrays.stream(bonuses).filter(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color)).findAny().get();
+                    // Apply bonus
                     score += pair.getBonus();
                 }
             }
