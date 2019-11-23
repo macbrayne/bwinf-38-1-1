@@ -7,6 +7,11 @@ import java.util.stream.Stream;
 class Parser {
     private static final int FILE_COUNT = 5;
 
+    /**
+     * Loads and parses all flowerbed input files into Flowerbed beginning with blumen1.txt
+     *
+     * @return The created Flowerbed objects
+     */
     static Flowerbed[] run() {
         var result = new Flowerbed[FILE_COUNT];
         for (var i = 0; i < FILE_COUNT; i++) {
@@ -29,6 +34,11 @@ class Parser {
         return result;
     }
 
+    /**
+     * Reads all lines of a input file and returns a String[]
+     * @param iteration File number to load
+     * @return The loaded String array
+     */
     private static String[] loadStrings(int iteration) {
         var content = new String[]{};
         var path = new File(ClassLoader.getSystemClassLoader().getResource(String.format("blumen%d.txt", iteration)).getPath()).toPath();
