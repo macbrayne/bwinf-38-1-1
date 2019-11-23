@@ -11,6 +11,7 @@ final class Main {
     public static void main(String[] args) {
         Flowerbed[] flowerbeds = Parser.run();
         Arrays.stream(flowerbeds).forEach(Main::findOptimum);
+        printLegend();
     }
 
     /**
@@ -88,5 +89,11 @@ final class Main {
                 String.format("%5d      %n",
                         result.getFlower(8).color.value()) +
                 String.format("Bewertung: %d%n", result.getScore()));
+    }
+
+    private static void printLegend() {
+        for (int i = 0; i < Flower.Colors.size(); i++) {
+            System.out.print(String.format("%d -> %s, ", i, Flower.Colors.fromValue(i + 1)));
+        }
     }
 }
