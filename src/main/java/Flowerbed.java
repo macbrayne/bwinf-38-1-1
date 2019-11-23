@@ -106,6 +106,10 @@ final class Flowerbed {
         return score;
     }
 
+    /**
+     * @param index Index to look from
+     * @return Returns the relative index of the neighbours
+     */
     private int[] getRelativeNeighbourIndices(int index) {
         int[] result = null;
         switch (index) {
@@ -141,7 +145,11 @@ final class Flowerbed {
         return result;
     }
 
-    public int getId() {
+
+    /**
+     * @return The id set at the creation of the object
+     */
+    int getId() {
         return id;
     }
 
