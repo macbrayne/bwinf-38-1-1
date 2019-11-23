@@ -43,5 +43,9 @@ class Flower {
         public int value() {
             return value;
         }
+
+        public String getParser() {
+            return parser;
+        }
     }
 }
