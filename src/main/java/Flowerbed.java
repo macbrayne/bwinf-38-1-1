@@ -1,9 +1,25 @@
 import java.util.Arrays;
 
+/**
+ * Stores and calculates flowerbed related information
+ */
 final class Flowerbed {
+    /**
+     * File suffix for distinguishing flowerbeds
+     */
     private final int id;
+
+    /**
+     * Bonuses as being described in the file
+     */
     private final FlowerBonus[] bonuses;
+    /**
+     * Flowers
+     */
     private final Flower[] flowers;
+    /**
+     * Number of flower colors to be put into the flowerbed
+     */
     private int colorCount;
 
     Flowerbed(int id, FlowerBonus[] bonuses, int colorCount) {
