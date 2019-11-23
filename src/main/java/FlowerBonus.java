@@ -1,5 +1,5 @@
 /**
- * Stores the bonus information stored inside the file
+ * Stores the bonus information loaded from the file
  */
 final class FlowerBonus {
     private final Flower.Colors flower1;
