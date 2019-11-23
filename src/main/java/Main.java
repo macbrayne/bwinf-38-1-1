@@ -6,21 +6,29 @@ final class Main {
         Arrays.stream(flowerbeds).forEach(Main::findOptimum);
     }
 
+    private static void init(Flowerbed flowerbed) {
+        for (int i = 0; i < flowerbed.getFlowerCount(); i++) {
+            flowerbed.setFlower(i, new Flower(Flower.Colors.BLUE));
+        }
+    }
 
     private static void findOptimum(Flowerbed flowerbed) {
+        init(flowerbed);
         Flowerbed working = flowerbed;
-        int i = 0;
-        int bestScore = 0;
-        while (i < 10000) {
-            Flowerbed copy = new Flowerbed(working);
-            for (int j = 0; j < copy.getFlowerCount(); j++) {
-                copy.setFlower(j, Flower.getRandom());
+        int bestScore = -10;
+        for (int flowerIndex = 0; flowerIndex < flowerbed.getFlowerCount(); flowerIndex++) {
+            for (int colorIndex = 0; colorIndex < Flower.Colors.size(); colorIndex++) {
+                for (int innerFlowerIndex = 0; innerFlowerIndex < flowerbed.getFlowerCount(); innerFlowerIndex++) {
+                    for (int innerColorIndex = 0; innerColorIndex < Flower.Colors.size(); innerColorIndex++) {
+                        Flowerbed copy = new Flowerbed(working);
+                        copy.setFlower(innerFlowerIndex, new Flower(Flower.Colors.fromValue(innerColorIndex + 1)));
+                        if (copy.getScore() > bestScore) {
+                            bestScore = copy.getScore();
+                            working = new Flowerbed(copy);
+                        }
+                    }
+                }
             }
-            if (copy.getScore() > bestScore) {
-                bestScore = copy.getScore();
-                working = new Flowerbed(copy);
-            }
-            i++;
         }
         prettyPrint(working);
     }
