@@ -40,10 +40,6 @@ final class Flowerbed {
         this.colorCount = copy.colorCount;
     }
 
-    FlowerBonus[] getBonuses() {
-        return bonuses;
-    }
-
     Flower getFlower(int index) {
         return flowers[index];
     }
