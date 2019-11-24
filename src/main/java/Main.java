@@ -11,9 +11,8 @@ final class Main {
         // For tracking the duration of the algorithm run
         long start = System.nanoTime();
         Flowerbed working = flowerbed;
-        int i = 0;
         int bestScore = 0;
-        while (i < 10000) {
+        for (int i = 0; i < 2000000; i++) {
             Flowerbed copy = new Flowerbed(working);
             for (int j = 0; j < copy.getFlowerCount(); j++) {
                 copy.setFlower(j, Flower.getRandom());
@@ -22,7 +21,6 @@ final class Main {
                 bestScore = copy.getScore();
                 working = new Flowerbed(copy);
             }
-            i++;
         }
         // After finishing stop the timer
         long finish = System.nanoTime();
