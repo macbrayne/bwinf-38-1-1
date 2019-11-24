@@ -26,6 +26,8 @@ final class Main {
         long finish = System.nanoTime();
         // Print the flowerbed
         prettyPrint(working);
+        // Print the legend
+        printLegend();
         // and print the duration
         System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
     }
@@ -56,7 +58,8 @@ final class Main {
 
     private static void printLegend() {
         for (int i = 0; i < Flower.Colors.count(); i++) {
-            System.out.print(String.format(" %d -> %s ", i, Flower.Colors.fromValue(i + 1).getParser()));
+            System.out.print(String.format(" %d -> %s ", i + 1, Flower.Colors.fromValue(i + 1).getParser()));
         }
+        System.out.println();
     }
 }
