@@ -92,7 +92,7 @@ final class Main {
     }
 
     private static void printLegend() {
-        for (int i = 0; i < Flower.Colors.size(); i++) {
+        for (int i = 0; i < Flower.Colors.count(); i++) {
             System.out.print(String.format(" %d -> %s ", i, Flower.Colors.fromValue(i + 1).getParser()));
         }
     }

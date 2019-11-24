@@ -2,21 +2,29 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- *
+ * Class for differentiating between Flowers (like in a flowerbed) and Colors (like in the flower bonus)
  */
 class Flower {
+    /**
+     * The flower color
+     */
     Colors color;
 
     Flower(Colors color) {
         this.color = color;
     }
 
+    /**
+     * Generates and returns a new flower with a random color
+     *
+     * @return Random flower
+     */
     static Flower getRandom() {
-        return new Flower(Colors.fromValue(new Random().nextInt(Colors.size()) + 1));
+        return new Flower(Colors.fromValue(new Random().nextInt(Colors.count()) + 1));
     }
 
     /**
-     * Flower Colors
+     * Enum for storing all possible Flower Colors
      */
     enum Colors {
         BLUE("blau", 1), YELLOW("gelb", 2),
@@ -52,7 +60,7 @@ class Flower {
             return Arrays.stream(Colors.values()).filter(i -> i.value == value).findAny().orElseThrow(() -> new IllegalStateException(String.format("Unsupported type %s", value)));
         }
 
-        static int size() {
+        static int count() {
             return (int) Arrays.stream(Colors.values()).count();
         }
 
