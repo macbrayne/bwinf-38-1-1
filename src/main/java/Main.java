@@ -24,10 +24,10 @@ final class Main {
         }
         // After finishing stop the timer
         long finish = System.nanoTime();
-        // and print the duration
-        System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
         // Print the flowerbed
         prettyPrint(working);
+        // and print the duration
+        System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
     }
 
     /**
