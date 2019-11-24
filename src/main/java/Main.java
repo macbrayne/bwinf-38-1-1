@@ -8,6 +8,8 @@ final class Main {
 
 
     private static void findOptimum(Flowerbed flowerbed) {
+        // For tracking the duration of the algorithm run
+        long start = System.nanoTime();
         Flowerbed working = flowerbed;
         int i = 0;
         int bestScore = 0;
@@ -22,9 +24,19 @@ final class Main {
             }
             i++;
         }
+        // After finishing stop the timer
+        long finish = System.nanoTime();
+        // and print the duration
+        System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
+        // Print the flowerbed
         prettyPrint(working);
     }
 
+    /**
+     * Prints a graphical representation of the flowerbed
+     *
+     * @param result The flowerbed to print
+     */
     private static void prettyPrint(Flowerbed result) {
         System.out.println(String.format("Hochbeet: %d%n", result.getId()) +
                 String.format("%5d      %n",
@@ -42,5 +54,11 @@ final class Main {
                 String.format("%5d      %n",
                         result.getFlower(8).color.value()) +
                 String.format("Bewertung: %d%n", result.getScore()));
+    }
+
+    private static void printLegend() {
+        for (int i = 0; i < Flower.Colors.count(); i++) {
+            System.out.print(String.format(" %d -> %s ", i, Flower.Colors.fromValue(i + 1).getParser()));
+        }
     }
 }
