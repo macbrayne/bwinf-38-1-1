@@ -8,7 +8,7 @@ class Parser {
     private static final int FILE_COUNT = 5;
 
     /**
-     * Loads and parses all flowerbed input files into Flowerbed beginning with blumen1.txt
+     * Loads and parses all flowerbed input files into Flowerbeds beginning with blumen1.txt
      *
      * @return The created Flowerbed objects
      */
