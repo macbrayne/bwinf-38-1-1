@@ -36,7 +36,7 @@ final class Main {
         // Print the legend
         printLegend();
         // and print the duration
-        System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
+        System.out.println("Das Blumenbeet wurde innerhalb von " + (finish - start) / 1000000 + "ms gelöst");
     }
 
     /**
