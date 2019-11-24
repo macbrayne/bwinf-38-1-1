@@ -63,6 +63,9 @@ final class Main {
                 String.format("Bewertung: %d%n", result.getScore()));
     }
 
+    /**
+     * Prints a legend for mapping the numbers to colors
+     */
     private static void printLegend() {
         for (int i = 0; i < Flower.Colors.count(); i++) {
             System.out.print(String.format(" %d -> %s ", i + 1, Flower.Colors.fromValue(i + 1).getParser()));
