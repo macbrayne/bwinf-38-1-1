@@ -2,11 +2,18 @@ import java.util.Arrays;
 
 final class Main {
     public static void main(String[] args) {
+        // Load flowerbeds
         Flowerbed[] flowerbeds = Parser.run();
+        // Run algorithm
         Arrays.stream(flowerbeds).forEach(Main::findOptimum);
     }
 
 
+    /**
+     * Finds and prints the result using brute force
+     *
+     * @param flowerbed Flowerbed to run the algorithm on
+     */
     private static void findOptimum(Flowerbed flowerbed) {
         // For tracking the duration of the algorithm run
         long start = System.nanoTime();
