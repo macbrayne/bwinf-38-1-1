@@ -11,7 +11,6 @@ final class Main {
     public static void main(String[] args) {
         Flowerbed[] flowerbeds = Parser.run();
         Arrays.stream(flowerbeds).forEach(Main::findOptimum);
-        printLegend();
     }
 
     /**
@@ -54,10 +53,12 @@ final class Main {
         }
         // After finishing stop the timer
         long finish = System.nanoTime();
-        // and print the duration
-        System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
         // Print the flowerbed
         prettyPrint(best);
+        // Print the legend
+        printLegend();
+        // and print the duration
+        System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
     }
 
     // TODO: JAVADOC
@@ -95,5 +96,6 @@ final class Main {
         for (int i = 0; i < Flower.Colors.count(); i++) {
             System.out.print(String.format(" %d -> %s ", i, Flower.Colors.fromValue(i + 1).getParser()));
         }
+        System.out.println();
     }
 }
