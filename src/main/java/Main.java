@@ -61,7 +61,13 @@ final class Main {
         System.out.println("Das Blumenbeet hat " + (finish - start) / 1000000 + "ms zum Lösen gebraucht");
     }
 
-    // TODO: JAVADOC
+    /**
+     * Returns the probability to accept a certain change
+     *
+     * @param costDifference Difference between the old and new cost
+     * @param temperature    Current annealing temperature
+     * @return Probability for change
+     */
     private static double calculateAcceptanceProbability(int costDifference, double temperature) {
         if (costDifference < 0) {
             return 1.0;
