@@ -1,9 +1,25 @@
 import java.util.Arrays;
 
+/**
+ * Stores and calculates flowerbed related information
+ */
 final class Flowerbed {
+    /**
+     * File suffix for distinguishing flowerbeds
+     */
     private final int id;
+
+    /**
+     * Bonuses as being described in the file
+     */
     private final FlowerBonus[] bonuses;
+    /**
+     * Flowers
+     */
     private final Flower[] flowers;
+    /**
+     * Number of flower colors to be put into the flowerbed
+     */
     private int colorCount;
 
     Flowerbed(int id, FlowerBonus[] bonuses, int colorCount) {
@@ -40,10 +56,6 @@ final class Flowerbed {
         flowers[index] = flower;
     }
 
-    int getColorCount() {
-        return colorCount;
-    }
-
     int getScore() {
         // Flower color count check
         if (Arrays.stream(flowers).map(i -> i.color).distinct().count() < colorCount) {
@@ -52,12 +64,16 @@ final class Flowerbed {
 
 
         int score = 0;
+        // Loop through flowers
         for (int i = 0; i < flowers.length; i++) {
             Flower flower = flowers[i];
+            // Loop through neighbours
             for (int relativeIndex : getRelativeNeighbourIndices(i)) {
                 Flower neighbourFlower = flowers[i + relativeIndex];
+                // Check for bonus
                 if (Arrays.stream(bonuses).anyMatch(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color))) {
                     FlowerBonus pair = Arrays.stream(bonuses).filter(bonus -> bonus.checkForBonus(flower.color, neighbourFlower.color)).findAny().get();
+                    // Apply bonus
                     score += pair.getBonus();
                 }
             }
@@ -65,6 +81,10 @@ final class Flowerbed {
         return score;
     }
 
+    /**
+     * @param index Index to look from
+     * @return Returns the relative index of the neighbours
+     */
     private int[] getRelativeNeighbourIndices(int index) {
         int[] result = null;
         switch (index) {
@@ -100,14 +120,18 @@ final class Flowerbed {
         return result;
     }
 
-    public int getId() {
+    /**
+     * @return The id set at the creation of the object
+     */
+    int getId() {
         return id;
     }
 
     @Override
     public String toString() {
         return "Flowerbed{" +
-                "bonuses=" + Arrays.toString(bonuses) +
+                "id=" + id +
+                ", bonuses=" + Arrays.toString(bonuses) +
                 ", flowers=" + Arrays.toString(flowers) +
                 ", colorCount=" + colorCount +
                 '}';
